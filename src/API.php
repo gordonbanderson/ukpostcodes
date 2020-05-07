@@ -9,7 +9,7 @@ use Suilven\UKPostCodes\Models\PostCode;
 class API
 {
     /**
-     * @param $postcode
+     * @param string $postcode
      * @return false|PostCode
      */
     public function lookup($postcode)
