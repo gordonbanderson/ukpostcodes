@@ -2,7 +2,6 @@
 [![Build Status](https://travis-ci.org/gordonbanderson/ukpostcodes.svg?branch=master)](https://travis-ci.org/gordonbanderson/ukpostcodes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/badges/build.png?b=master)](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/build-status/master)
-[![CircleCI](https://circleci.com/gh/gordonbanderson/ukpostcodes.svg?style=svg)](https://circleci.com/gh/gordonbanderson/ukpostcodes)
 
 [![codecov.io](https://codecov.io/github/gordonbanderson/ukpostcodes/coverage.svg?branch=master)](https://codecov.io/github/gordonbanderson/ukpostcodes?branch=master)
 
