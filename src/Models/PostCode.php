@@ -40,7 +40,7 @@ class PostCode
     {
         $keys = array_keys($response);
         sort($keys);
-        foreach($keys as $key) {
+        foreach ($keys as $key) {
             //error_log('* @property int $' . $key);
             $this->$key = $response[$key];
         }
