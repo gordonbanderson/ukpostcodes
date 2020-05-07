@@ -82,19 +82,26 @@ class API
         }
         return false;
     }
+
+
+    /**
+     * @return bool|PostCode a random PostCode
+     */
     public function random()
     {
         $jsonurl = "https://api.postcodes.io/random/postcodes/";
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return new PostCode($decoded['result']);
         } else {
             return false;
         }
         return false;
     }
+
+
     public function validate($postcode)
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/validate";
@@ -112,6 +119,8 @@ class API
         }
         return false;
     }
+
+
     public function nearest($postcode)
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/nearest";
@@ -125,6 +134,8 @@ class API
         }
         return false;
     }
+
+
     public function partial($postcode)
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/autocomplete";
@@ -138,6 +149,8 @@ class API
         }
         return false;
     }
+
+
     public function query($postcode)
     {
         $jsonurl = "https://api.postcodes.io/postcodes?q=".$postcode;
@@ -151,6 +164,8 @@ class API
         }
         return false;
     }
+
+
     public function lookupTerminated($postcode)
     {
         $jsonurl = "https://api.postcodes.io/terminated_postcodes/".$postcode;
@@ -164,6 +179,8 @@ class API
         }
         return false;
     }
+
+
     public function lookupOutwardCode($code)
     {
         $jsonurl = "https://api.postcodes.io/outcodes/".$code;
@@ -177,6 +194,8 @@ class API
         }
         return false;
     }
+
+
     public function nearestOutwardCode($code)
     {
         $jsonurl = "https://api.postcodes.io/outcodes/".$code."/nearest";
@@ -190,6 +209,8 @@ class API
         }
         return false;
     }
+
+
     public function nearestOutwardCodeFromLongLat($longitude, $latitude)
     {
         $jsonurl = "https://api.postcodes.io/outcodes?lon=".$longitude."&lat=".$latitude;
@@ -203,6 +224,8 @@ class API
         }
         return false;
     }
+
+
     public function distance($postcode1, $postcode2, $unit)
     {
         //adapted from http://www.geodatasource.com/developers/php
@@ -234,6 +257,13 @@ class API
             return $miles;
         }
     }
+
+    /**
+     * Execute a request
+     *
+     * @param string $jsonurl
+     * @return bool|string
+     */
     public function request($jsonurl)
     {
         $ch = curl_init();
