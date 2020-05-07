@@ -243,7 +243,8 @@ class API
         }
 
         $theta = $postcode1->longitude - $postcode2->longitude;
-        $dist = sin(deg2rad($postcode1->latitude)) * sin(deg2rad($postcode2->latitude)) +  cos(deg2rad($postcode1->latitude)) * cos(deg2rad($postcode2->latitude)) * cos(deg2rad($theta));
+        $dist = sin(deg2rad($postcode1->latitude)) * sin(deg2rad($postcode2->latitude)) +
+            cos(deg2rad($postcode1->latitude)) * cos(deg2rad($postcode2->latitude)) * cos(deg2rad($theta));
         $dist = acos($dist);
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
