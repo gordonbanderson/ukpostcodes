@@ -42,7 +42,6 @@ class APITest extends TestCase
     {
         $response = $this->api->nearest('SW1A 2AA');
         error_log(print_r($response, 1));
-
     }
 
     /**
@@ -58,7 +57,5 @@ class APITest extends TestCase
 
         $lookup = $this->api->lookup('CM6 1EJ');
         $this->assertEquals($lookup, $random);
-
-
     }
 }
