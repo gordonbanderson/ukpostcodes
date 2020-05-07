@@ -1,0 +1,17 @@
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
+    <testsuite name="Suilven UK Postcodes Client">
+        <directory>test/</directory>
+    </testsuite>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory suffix=".php">tests/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <listeners>
+        <listener class="VCR\PHPUnit\TestListener\VCRTestListener" file="vendor/php-vcr/phpunit-testlistener-vcr/src/VCRTestListener.php" />
+    </listeners>
+</phpunit>
