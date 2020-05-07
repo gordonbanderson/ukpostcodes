@@ -21,12 +21,26 @@ class APITest extends TestCase
 
     /**
      * @test
-     * @vcr getpostcode.yml
+     * @vcr testlookup.yml
      * @group PhpVcrTest
      */
-    public function testGetPostCode()
+    public function testLookup()
     {
-        $response = $this->api->query('SW1A 2AA');
+        $lookup = $this->api->lookup('SW1A 2AA');
+        error_log(print_r($lookup, 1));
+
+        $this->assertEquals('SW1A 2AA', $lookup->postcode);
+    }
+
+    /**
+     * @test
+     * @vcr getnearest.yml
+     * @group PhpVcrTest
+     */
+    public function testGetNearest()
+    {
+        $response = $this->api->nearest('SW1A 2AA');
         error_log(print_r($response, 1));
+
     }
 }
