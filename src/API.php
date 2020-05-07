@@ -2,24 +2,30 @@
 
 namespace Suilven\UKPostCodes;
 
-    //Based on code by Ryan Hart 2016 https://github.com/ryryan/Postcodes-IO-PHP/blob/master/Postcodes-IO-PHP.php
-    //Class to use the API provided by http://postcodes.io
+//Based on code by Ryan Hart 2016 https://github.com/ryryan/Postcodes-IO-PHP/blob/master/Postcodes-IO-PHP.php
+
+use Suilven\UKPostCodes\Models\PostCode;
 
 class API
 {
-
+    /**
+     * @param $postcode
+     * @return false|PostCode
+     */
     public function lookup($postcode)
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode;
         $json = $this->request($jsonurl);
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return new PostCode($decoded['result']);
         } else {
             return false;
         }
         return false;
     }
+
+
     public function bulkLookup($postcodes)
     {
         $data_string = json_encode(array('postcodes' => $postcodes));
