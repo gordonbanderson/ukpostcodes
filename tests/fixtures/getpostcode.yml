@@ -1,0 +1,22 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes?q=SW1A%202AA'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Thu, 07 May 2020 21:44:07 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '824'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"338-va2ph19qhSLPOVMASmx5yKJ0AeA"'
+        body: '{"status":200,"result":[{"postcode":"SW1A 2AA","quality":1,"eastings":530047,"northings":179951,"country":"England","nhs_ha":"London","longitude":-0.127695,"latitude":51.50354,"european_electoral_region":"London","primary_care_trust":"Westminster","region":"London","lsoa":"Westminster 018C","msoa":"Westminster 018","incode":"2AA","outcode":"SW1A","parliamentary_constituency":"Cities of London and Westminster","admin_district":"Westminster","parish":"Westminster, unparished area","admin_county":null,"admin_ward":"St James''s","ced":null,"ccg":"NHS Central London (Westminster)","nuts":"Westminster","codes":{"admin_district":"E09000033","admin_county":"E99999999","admin_ward":"E05000644","parish":"E43000236","parliamentary_constituency":"E14000639","ccg":"E38000031","ccg_id":"09A","ced":"E99999999","nuts":"UKI32"}}]}'
