@@ -1,0 +1,14 @@
+{
+    "name": "suilven/ukpostcodes",
+    "description": "Wrapper around postcodes.io to get info about UK postcodes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gordon Anderson",
+            "email": "gordon.b.anderson@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
