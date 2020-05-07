@@ -1,0 +1,43 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/random/postcodes/'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Thu, 07 May 2020 22:25:55 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '806'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"326-oP5J4GKMSQAI4dx3jm/LSlk9SnU"'
+        body: '{"status":200,"result":{"postcode":"CM6 1EJ","quality":1,"eastings":563138,"northings":221527,"country":"England","nhs_ha":"East of England","longitude":0.3681,"latitude":51.868466,"european_electoral_region":"Eastern","primary_care_trust":"West Essex","region":"East of England","lsoa":"Uttlesford 007B","msoa":"Uttlesford 007","incode":"1EJ","outcode":"CM6","parliamentary_constituency":"Saffron Walden","admin_district":"Uttlesford","parish":"Great Dunmow","admin_county":"Essex","admin_ward":"Great Dunmow South & Barnston","ced":"Dunmow","ccg":"NHS West Essex","nuts":"West Essex","codes":{"admin_district":"E07000077","admin_county":"E10000012","admin_ward":"E05009918","parish":"E04012937","parliamentary_constituency":"E14000910","ccg":"E38000197","ccg_id":"07H","ced":"E58000429","nuts":"UKH35"}}}'
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes/CM6%201EJ'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Thu, 07 May 2020 22:31:01 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '806'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"326-oP5J4GKMSQAI4dx3jm/LSlk9SnU"'
+        body: '{"status":200,"result":{"postcode":"CM6 1EJ","quality":1,"eastings":563138,"northings":221527,"country":"England","nhs_ha":"East of England","longitude":0.3681,"latitude":51.868466,"european_electoral_region":"Eastern","primary_care_trust":"West Essex","region":"East of England","lsoa":"Uttlesford 007B","msoa":"Uttlesford 007","incode":"1EJ","outcode":"CM6","parliamentary_constituency":"Saffron Walden","admin_district":"Uttlesford","parish":"Great Dunmow","admin_county":"Essex","admin_ward":"Great Dunmow South & Barnston","ced":"Dunmow","ccg":"NHS West Essex","nuts":"West Essex","codes":{"admin_district":"E07000077","admin_county":"E10000012","admin_ward":"E05009918","parish":"E04012937","parliamentary_constituency":"E14000910","ccg":"E38000197","ccg_id":"07H","ced":"E58000429","nuts":"UKH35"}}}'
