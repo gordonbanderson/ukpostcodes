@@ -38,12 +38,10 @@ class PostCode
 {
     public function __construct($response)
     {
-        error_log('NEW POSTCODE');
-        error_log(print_r($response, 1));
         $keys = array_keys($response);
         sort($keys);
         foreach($keys as $key) {
-            error_log('* @property int $' . $key);
+            //error_log('* @property int $' . $key);
             $this->$key = $response[$key];
         }
     }
