@@ -5,6 +5,7 @@ namespace Tests\Suilven\UKPostCodes;
 
 use PHPUnit\Framework\TestCase;
 use Suilven\UKPostCodes\API;
+use Suilven\UKPostCodes\Models\Distance;
 use Suilven\UKPostCodes\Models\PostCode;
 
 class APITest extends TestCase
@@ -140,7 +141,7 @@ class APITest extends TestCase
         $postcodeObjs = $this->api->query('SW16');
     }
 
-        /**
+    /**
      * @test
      * @vcr testrandom.yml
      * @group PhpVcrTest
@@ -152,6 +153,48 @@ class APITest extends TestCase
 
         $lookup = $this->api->lookup($random->postcode);
         $this->assertEquals($lookup, $random);
+    }
+
+    /**
+     * @test
+     * @vcr testdistancemiles.yml
+     * @group PhpVcrTest
+     */
+    public function testDistanceMiles()
+    {
+        /** @var float $distance Distance between Scottish and English parliaments */
+        $distance = $this->api->distance('SW1A 2AB', 'EH99 1SP');
+
+        $this->assertIsFloat($distance);
+        $this->assertEquals(331.5486782092965, $distance);
+    }
+
+    /**
+     * @test
+     * @vcr testdistancenauticalmiles.yml
+     * @group PhpVcrTest
+     */
+    public function testDistanceNauticalMiles()
+    {
+        /** @var float $distance Distance between Scottish and English parliaments */
+        $distance = $this->api->distance('SW1A 2AB', 'EH99 1SP', Distance::NAUTICAL_MILES);
+
+        $this->assertIsFloat($distance);
+        $this->assertEquals(287.91687215695305, $distance);
+    }
+
+    /**
+     * @test
+     * @vcr testdistancenauticalkilometres.yml
+     * @group PhpVcrTest
+     */
+    public function testDistanceKilometres()
+    {
+        /** @var float $distance Distance between Scottish and English parliaments */
+        $distance = $this->api->distance('SW1A 2AB', 'EH99 1SP', Distance::KM);
+
+        $this->assertIsFloat($distance);
+        $this->assertEquals(533.5758759840621, $distance);
     }
 
     /**

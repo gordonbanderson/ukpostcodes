@@ -1,0 +1,43 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes/SW1A%202AB'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Fri, 08 May 2020 17:23:33 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '823'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"337-QPcPrKWVV3XW1a2UyXMp/W4CrCM"'
+        body: '{"status":200,"result":{"postcode":"SW1A 2AB","quality":1,"eastings":530035,"northings":179935,"country":"England","nhs_ha":"London","longitude":-0.127874,"latitude":51.503399,"european_electoral_region":"London","primary_care_trust":"Westminster","region":"London","lsoa":"Westminster 018C","msoa":"Westminster 018","incode":"2AB","outcode":"SW1A","parliamentary_constituency":"Cities of London and Westminster","admin_district":"Westminster","parish":"Westminster, unparished area","admin_county":null,"admin_ward":"St James''s","ced":null,"ccg":"NHS Central London (Westminster)","nuts":"Westminster","codes":{"admin_district":"E09000033","admin_county":"E99999999","admin_ward":"E05000644","parish":"E43000236","parliamentary_constituency":"E14000639","ccg":"E38000031","ccg_id":"09A","ced":"E99999999","nuts":"UKI32"}}}'
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes/EH99%201SP'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Fri, 08 May 2020 17:23:34 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '871'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"367-hDozrBBNBTlK3FRGwH/eBjFR4a8"'
+        body: '{"status":200,"result":{"postcode":"EH99 1SP","quality":1,"eastings":326751,"northings":673849,"country":"Scotland","nhs_ha":"Lothian","longitude":-3.174589,"latitude":55.952064,"european_electoral_region":"Scotland","primary_care_trust":"Edinburgh Community Health Partnership","region":null,"lsoa":"Canongate, Southside and Dumbiedykes - 05","msoa":"Canongate, Southside and Dumbiedykes","incode":"1SP","outcode":"EH99","parliamentary_constituency":"Edinburgh East","admin_district":"City of Edinburgh","parish":null,"admin_county":null,"admin_ward":"City Centre","ced":null,"ccg":"Edinburgh Community Health Partnership","nuts":"City of Edinburgh","codes":{"admin_district":"S12000036","admin_county":"S99999999","admin_ward":"S13002929","parish":"S99999999","parliamentary_constituency":"S14000022","ccg":"S03000042","ccg_id":"042","ced":"S99999999","nuts":"UKM75"}}}'
