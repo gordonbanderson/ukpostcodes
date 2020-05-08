@@ -79,7 +79,6 @@ class APITest extends TestCase
 
         /** @var PostCode $partialPostcodeString */
         $partialPostcodeString = $this->api->partial('SW16');
-
     }
 
     /**
@@ -91,9 +90,8 @@ class APITest extends TestCase
     {
         /** @var PostCode $random */
         $random = $this->api->random();
-        $this->assertEquals('CM6 1EJ', $random->postcode);
 
-        $lookup = $this->api->lookup('CM6 1EJ');
+        $lookup = $this->api->lookup($random->postcode);
         $this->assertEquals($lookup, $random);
     }
 
@@ -109,7 +107,6 @@ class APITest extends TestCase
 
         /** @var PostCode $random */
         $random = $this->api->random();
-        $this->assertEquals('AB16 7LR', $random->postcode);
     }
 
     /**
