@@ -125,7 +125,22 @@ class APITest extends TestCase
         ], $postcodes);
     }
 
+
     /**
+     * @test
+     * @vcr testqueryservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testQueryServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to lookup postcodes');
+
+        /** @var array $postcodeObjs */
+        $postcodeObjs = $this->api->query('SW16');
+    }
+
+        /**
      * @test
      * @vcr testrandom.yml
      * @group PhpVcrTest
