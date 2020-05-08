@@ -24,6 +24,8 @@
 
 PHP client wrapper around the postcodes.io API service
 
+![dependency graph for clue/graph-composer](./packages/packages.svg)
+
 
 
 **** WORK IN PROGRESS ****
