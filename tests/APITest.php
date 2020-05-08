@@ -45,7 +45,6 @@ class APITest extends TestCase
         $this->expectExceptionMessage('An error occurred whilst trying to lookup postcode');
 
         $lookup = $this->api->lookup('SW1A 2AA');
-
     }
 
     /**
@@ -94,6 +93,36 @@ class APITest extends TestCase
 
         /** @var PostCode $partialPostcodeString */
         $partialPostcodeString = $this->api->partial('SW16');
+    }
+
+    /**
+     * @test
+     * @vcr testquery.yml
+     * @group PhpVcrTest
+     */
+    public function testQuery()
+    {
+        /** @var array $postcodeObjs */
+        $postcodeObjs = $this->api->query('SW16');
+
+        foreach($postcodeObjs as $postcodeObj) {
+            $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
+        }
+
+        $postcodes = array_map(function ($p) { return $p->postcode; }, $postcodeObjs);
+
+        $this->assertEquals([
+            'SW16 1AA',
+            'SW16 1AB',
+            'SW16 1AD',
+            'SW16 1AE',
+            'SW16 1AF',
+            'SW16 1AG',
+            'SW16 1AH',
+            'SW16 1AJ',
+            'SW16 1AL',
+            'SW16 1AN',
+        ], $postcodes);
     }
 
     /**
