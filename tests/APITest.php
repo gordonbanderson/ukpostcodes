@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Suilven\UKPostCodes\API;
 use Suilven\UKPostCodes\Models\Distance;
 use Suilven\UKPostCodes\Models\PostCode;
+use Symfony\Component\VarExporter\VarExporter;
 
 class APITest extends TestCase
 {
@@ -29,8 +30,6 @@ class APITest extends TestCase
     public function testLookup()
     {
         $lookup = $this->api->lookup('SW1A 2AA');
-        error_log(print_r($lookup, 1));
-
         $this->assertEquals('SW1A 2AA', $lookup->postcode);
     }
 
@@ -55,8 +54,28 @@ class APITest extends TestCase
      */
     public function testNearest()
     {
-        $response = $this->api->nearest('SW1A 2AA');
-        error_log(print_r($response, 1));
+        /** @var array<PostCode> $nearest */
+        $nearest = $this->api->nearest('SW1A 2AA');
+
+        // check the returned values are all objeccts of class PostCode
+        foreach ($nearest as $postcodeObj) {
+            $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
+        }
+
+        // assert the nearest postcodes
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $nearest);
+        $this->assertEquals([
+            'SW1A 2AA',
+            'SW1A 2AB',
+            'SW1A 2AD',
+            'SW1A 2AG',
+            'SW1A 2AL',
+            'SW1A 2AS',
+            'SW1A 2AT',
+            'SW1A 2AU',
+        ], $postcodes);
     }
 
     /**
@@ -222,7 +241,6 @@ class APITest extends TestCase
     {
         /** @var PostCode $random */
         $validated = $this->api->validate('KY16 9SS');
-        error_log(print_r($validated, 1));
         $this->assertTrue($validated);
     }
 
@@ -235,7 +253,6 @@ class APITest extends TestCase
     {
         /** @var PostCode $validated */
         $validated = $this->api->validate('KYAB92A');
-        error_log(print_r($validated, 1));
         $this->assertFalse($validated);
     }
 
@@ -250,7 +267,6 @@ class APITest extends TestCase
         $this->expectExceptionMessage('An error occurred whilst trying to validate');
         /** @var PostCode $validated */
         $validated = $this->api->validate('KYAB92A');
-        error_log(print_r($validated, 1));
         $this->assertFalse($validated);
     }
 }
