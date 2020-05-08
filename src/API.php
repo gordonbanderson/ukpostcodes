@@ -4,6 +4,7 @@ namespace Suilven\UKPostCodes;
 
 //Based on code by Ryan Hart 2016 https://github.com/ryryan/Postcodes-IO-PHP/blob/master/Postcodes-IO-PHP.php
 
+use Suilven\UKPostCodes\Exceptions\PostCodeServerException;
 use Suilven\UKPostCodes\Models\PostCode;
 
 class API
@@ -115,9 +116,8 @@ class API
                 return false;
             }
         } else {
-            return false;
+            throw new PostCodeServerException('An error occurred whilst trying to validate');
         }
-        return false;
     }
 
 

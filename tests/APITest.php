@@ -58,4 +58,45 @@ class APITest extends TestCase
         $lookup = $this->api->lookup('CM6 1EJ');
         $this->assertEquals($lookup, $random);
     }
+
+    /**
+     * @test
+     * @vcr testvalidatevalid.yml
+     * @group PhpVcrTest
+     */
+    public function testValidateValid()
+    {
+        /** @var PostCode $random */
+        $validated = $this->api->validate('KY16 9SS');
+        error_log(print_r($validated, 1));
+        $this->assertTrue($validated);
+    }
+
+    /**
+     * @test
+     * @vcr testvalidateinvalid.yml
+     * @group PhpVcrTest
+     */
+    public function testValidateInvalid()
+    {
+        /** @var PostCode $validated */
+        $validated = $this->api->validate('KYAB92A');
+        error_log(print_r($validated, 1));
+        $this->assertFalse($validated);
+    }
+
+    /**
+     * @test
+     * @vcr testvalidateinvalidservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testValidateInvalidServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to validate');
+        /** @var PostCode $validated */
+        $validated = $this->api->validate('KYAB92A');
+        error_log(print_r($validated, 1));
+        $this->assertFalse($validated);
+    }
 }
