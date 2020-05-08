@@ -106,11 +106,13 @@ class APITest extends TestCase
         /** @var array $postcodeObjs */
         $postcodeObjs = $this->api->query('SW16');
 
-        foreach($postcodeObjs as $postcodeObj) {
+        foreach ($postcodeObjs as $postcodeObj) {
             $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
         }
 
-        $postcodes = array_map(function ($p) { return $p->postcode; }, $postcodeObjs);
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $postcodeObjs);
 
         $this->assertEquals([
             'SW16 1AA',
