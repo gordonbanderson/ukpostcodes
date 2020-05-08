@@ -46,6 +46,44 @@ class APITest extends TestCase
 
     /**
      * @test
+     * @vcr testpartial.yml
+     * @group PhpVcrTest
+     */
+    public function testPartial()
+    {
+        /** @var PostCode $partialPostcodeString */
+        $partialPostcodeString = $this->api->partial('SW16');
+        $this->assertEquals([
+            'SW16 1AA',
+            'SW16 1AB',
+            'SW16 1AD',
+            'SW16 1AE',
+            'SW16 1AF',
+            'SW16 1AG',
+            'SW16 1AH',
+            'SW16 1AJ',
+            'SW16 1AL',
+            'SW16 1AN',
+        ], $partialPostcodeString);
+    }
+
+    /**
+     * @test
+     * @vcr testpartialservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testPartialServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to autocomplete a postcode');
+
+        /** @var PostCode $partialPostcodeString */
+        $partialPostcodeString = $this->api->partial('SW16');
+
+    }
+
+    /**
+     * @test
      * @vcr testrandom.yml
      * @group PhpVcrTest
      */
