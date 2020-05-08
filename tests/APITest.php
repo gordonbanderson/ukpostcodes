@@ -80,6 +80,20 @@ class APITest extends TestCase
 
     /**
      * @test
+     * @vcr testnearestservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testNearestServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to lookup nearest postcodes');
+
+        /** @var array<PostCode> $nearest */
+        $nearest = $this->api->nearest('SW1A 2AA');
+    }
+
+    /**
+     * @test
      * @vcr testpartial.yml
      * @group PhpVcrTest
      */
