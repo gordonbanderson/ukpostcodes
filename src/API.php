@@ -64,7 +64,8 @@ class API
         if ($decoded['status'] == 200) {
             return new PostCode($decoded['result']);
         } else {
-            throw new PostCodeServerException('An error occurred whilst trying to lookup postcode for given coordinates');
+            throw new PostCodeServerException(
+                'An error occurred whilst trying to lookup postcode for given coordinates');
         }
     }
 
