@@ -145,18 +145,24 @@ class API
     }
 
 
-    public function partial($postcode)
+    /**
+     * Autocomplete a partial postcode
+     * 
+     * @param string $partialPostCode The start of an incomplete postcode, e.g. KY12
+     * @return array Array of postcode strings
+     * @throws PostCodeServerException
+     */
+    public function partial($partialPostCode)
     {
-        $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/autocomplete";
+        $jsonurl = "https://api.postcodes.io/postcodes/".$partialPostCode."/autocomplete";
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return  $decoded['result'];
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to autocomplete a postcode");
         }
-        return false;
     }
 
 
