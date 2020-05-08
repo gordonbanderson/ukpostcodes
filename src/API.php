@@ -5,6 +5,7 @@ namespace Suilven\UKPostCodes;
 //Based on code by Ryan Hart 2016 https://github.com/ryryan/Postcodes-IO-PHP/blob/master/Postcodes-IO-PHP.php
 
 use Suilven\UKPostCodes\Exceptions\PostCodeServerException;
+use Suilven\UKPostCodes\Models\Distance;
 use Suilven\UKPostCodes\Models\PostCode;
 
 class API
@@ -249,9 +250,13 @@ class API
 
 
     /**
-     * @return false|float
+     * @param string $postcode1 the source postcode
+     * @param string $postcode2 the destination postcode
+     * @param string $unit either M, N, or K for miles, nautical miles, or km
+     * @return float the distance in the units of distance
+     * @throws PostCodeServerException if a server error occurs or the postcodes are cannot be found
      */
-    public function distance($postcode1, $postcode2, $unit)
+    public function distance($postcode1, $postcode2, $unit = Distance::MILES)
     {
         //adapted from http://www.geodatasource.com/developers/php
         /*
@@ -264,7 +269,7 @@ class API
         $postcode2 = $this->lookup($postcode2);
 
         if ($postcode1 == null || $postcode2 == null) {
-            return false;
+            throw new PostCodeServerException("One or both of {$postcode1} & {$postcode2} are invalid");
         }
 
         $theta = $postcode1->longitude - $postcode2->longitude;
@@ -275,11 +280,12 @@ class API
         $miles = $dist * 60 * 1.1515;
         $unit = strtoupper($unit);
 
-        if ($unit == "K") {
+        if ($unit == Distance::KM) {
             return ($miles * 1.609344);
-        } elseif ($unit == "N") {
+        } elseif ($unit == Distance::NAUTICAL_MILES) {
             return ($miles * 0.8684);
         } else {
+            // miles case
             return $miles;
         }
     }
