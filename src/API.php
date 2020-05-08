@@ -86,7 +86,11 @@ class API
 
 
     /**
-     * @return bool|PostCode a random PostCode
+     * Returns an entirely random postcode
+     *
+     * @return PostCode a random PostCode
+     *
+     * @throws PostCodeServerException
      */
     public function random()
     {
@@ -101,7 +105,13 @@ class API
         }
     }
 
-
+    /**
+     * Ascertain whether a provided postcode string is valid or not
+     *
+     * @param string $postcode
+     * @return bool true if the postcode is valid, false if not
+     * @throws PostCodeServerException
+     */
     public function validate($postcode): bool
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/validate";
