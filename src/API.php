@@ -46,21 +46,30 @@ class API
         } else {
             return false;
         }
-        return false;
     }
-    public function nearestPostcodesFromLongLat($longitude, $latitude)
+
+
+    /**
+     * @param float $longitude longitude of given coordinate
+     * @param float $latitude latitude of given coordinate
+     * @return array<PostCode>
+     * @throws PostCodeServerException
+     */
+    public function nearestPostcodesFromLongLat($longitude, $latitude) : array
     {
         $jsonurl = "https://api.postcodes.io/postcodes?lon=".$longitude."&lat=".$latitude;
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return new PostCode($decoded['result']);
         } else {
-            return false;
+            throw new PostCodeServerException('An error occurred whilst trying to lookup postcode for given coordinates');
         }
-        return false;
     }
+
+
+
     public function bulkReverseGeocoding($geolocations)
     {
         $data_string = json_encode(array('geolocations' => $geolocations));
@@ -79,9 +88,8 @@ class API
         if ($decoded->status == 200) {
             return $decoded->result;
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to bulk reverse geocode");
         }
-        return false;
     }
 
 
@@ -135,13 +143,12 @@ class API
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/nearest";
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return $this->parsePostCodeArray($decoded['result']);
         } else {
-            return false;
+            throw new PostCodeServerException('An error occurred whilst trying to lookup nearest postcodes');
         }
-        return false;
     }
 
 
@@ -169,6 +176,7 @@ class API
      * This is the same as partial() except that it returns in full the postcode details, not just the postcode string
      *
      * @param string $partialPostCode the partial postcode, e.g. KY16
+     * @return array<PostCode> an array of PostCode objects
      * @throws PostCodeServerException
      */
     public function query($partialPostCode) : array
@@ -177,16 +185,12 @@ class API
         $json = $this->request($jsonurl);
         $decoded = json_decode($json, true);
         if ($decoded['status'] == 200) {
-            $postcodesArray = [];
-            foreach ($decoded['result'] as $singlePostcodeDetails) {
-                $postcodeObj = new PostCode($singlePostcodeDetails);
-                $postcodesArray[] = $postcodeObj;
-            }
-            return $postcodesArray;
+            return $this->parsePostCodeArray($decoded['result']);
         } else {
             throw new PostCodeServerException('An error occurred whilst trying to lookup postcodes');
         }
     }
+
 
 
     public function lookupTerminated($postcode)
@@ -200,7 +204,6 @@ class API
         } else {
             return false;
         }
-        return false;
     }
 
 
@@ -209,13 +212,12 @@ class API
         $jsonurl = "https://api.postcodes.io/outcodes/".$code;
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return  $decoded['result'];
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to execute lookupOutwardCode");
         }
-        return false;
     }
 
 
@@ -224,28 +226,30 @@ class API
         $jsonurl = "https://api.postcodes.io/outcodes/".$code."/nearest";
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return  $decoded['result'];
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to execute nearestOutwardCode");
         }
-        return false;
     }
 
-
+    /**
+     * @param float $longitude the longitude of the coordinate
+     * @param float $latitude the latitude of the coordinate
+     * @return bool
+     */
     public function nearestOutwardCodeFromLongLat($longitude, $latitude)
     {
         $jsonurl = "https://api.postcodes.io/outcodes?lon=".$longitude."&lat=".$latitude;
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            return  $decoded['result'];
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to autocomplete a postcode");
         }
-        return false;
     }
 
 
@@ -308,5 +312,21 @@ class API
         $response = curl_exec($ch);
         curl_close($ch);
         return $response;
+    }
+
+
+    /**
+     * Convert the response of several postcodes into an array of PostCode objects
+     * @param array $postcodeArrayResponse
+     * @return array<PostCode>
+     */
+    private function parsePostCodeArray($postcodeArrayResponse)
+    {
+        $postcodesArray = [];
+        foreach ($postcodeArrayResponse as $singlePostcodeDetails) {
+            $postcodeObj = new PostCode($singlePostcodeDetails);
+            $postcodesArray[] = $postcodeObj;
+        }
+        return $postcodesArray;
     }
 }

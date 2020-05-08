@@ -36,6 +36,10 @@ use _HumbugBox7c6aed0dbb3c\Roave\BetterReflection\Reflection\Adapter\ReflectionO
  */
 class PostCode
 {
+    /**
+     * PostCode constructor.
+     * @param array<array> $response
+     */
     public function __construct($response)
     {
         $keys = array_keys($response);
