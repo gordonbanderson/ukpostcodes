@@ -21,9 +21,8 @@ class API
         if ($decoded['status'] == 200) {
             return new PostCode($decoded['result']);
         } else {
-            return false;
+            throw new PostCodeServerException('An error occurred whilst trying to lookup postcode');
         }
-        return false;
     }
 
 
@@ -147,7 +146,7 @@ class API
 
     /**
      * Autocomplete a partial postcode
-     * 
+     *
      * @param string $partialPostCode The start of an incomplete postcode, e.g. KY12
      * @return array Array of postcode strings
      * @throws PostCodeServerException
