@@ -61,6 +61,21 @@ class APITest extends TestCase
 
     /**
      * @test
+     * @vcr testrandomservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testRandomServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to validate');
+
+        /** @var PostCode $random */
+        $random = $this->api->random();
+        $this->assertEquals('AB16 7LR', $random->postcode);
+    }
+
+    /**
+     * @test
      * @vcr testvalidatevalid.yml
      * @group PhpVcrTest
      */

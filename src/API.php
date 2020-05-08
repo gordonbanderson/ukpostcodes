@@ -97,13 +97,12 @@ class API
         if ($decoded['status'] == 200) {
             return new PostCode($decoded['result']);
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to select a random postcode");
         }
-        return false;
     }
 
 
-    public function validate($postcode)
+    public function validate($postcode): bool
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/validate";
         $json = $this->request($jsonurl);
@@ -226,6 +225,9 @@ class API
     }
 
 
+    /**
+     * @return false|float
+     */
     public function distance($postcode1, $postcode2, $unit)
     {
         //adapted from http://www.geodatasource.com/developers/php

@@ -1,0 +1,22 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/random/postcodes/'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '500'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Fri, 08 May 2020 16:09:06 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '886'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"376-oDC/ATa2rvpu2svLiBbWII7kM5U"'
+        body: '{"status":500,"result":{"postcode":"AB16 7LR","quality":1,"eastings":390555,"northings":808754,"country":"Scotland","nhs_ha":"Grampian","longitude":-2.157822,"latitude":57.169531,"european_electoral_region":"Scotland","primary_care_trust":"Aberdeen City Community Health Partnership","region":null,"lsoa":"Heathryfold and Middlefield - 02","msoa":"Heathryfold and Middlefield","incode":"7LR","outcode":"AB16","parliamentary_constituency":"Aberdeen North","admin_district":"Aberdeen City","parish":null,"admin_county":null,"admin_ward":"Northfield/Mastrick North","ced":null,"ccg":"Aberdeen City Community Health Partnership","nuts":"Aberdeen City and Aberdeenshire","codes":{"admin_district":"S12000033","admin_county":"S99999999","admin_ward":"S13002838","parish":"S99999999","parliamentary_constituency":"S14000001","ccg":"S03000012","ccg_id":"012","ced":"S99999999","nuts":"UKM50"}}}'
