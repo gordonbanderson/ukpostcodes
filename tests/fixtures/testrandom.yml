@@ -13,17 +13,17 @@
             message: ''
         headers:
             server: nginx/1.14.0
-            date: 'Thu, 07 May 2020 22:25:55 GMT'
+            date: 'Fri, 08 May 2020 16:45:00 GMT'
             content-type: 'application/json; charset=utf-8'
-            content-length: '806'
+            content-length: '781'
             x-gnu: 'Michael J Blanchard'
             access-control-allow-origin: '*'
-            etag: 'W/"326-oP5J4GKMSQAI4dx3jm/LSlk9SnU"'
-        body: '{"status":200,"result":{"postcode":"CM6 1EJ","quality":1,"eastings":563138,"northings":221527,"country":"England","nhs_ha":"East of England","longitude":0.3681,"latitude":51.868466,"european_electoral_region":"Eastern","primary_care_trust":"West Essex","region":"East of England","lsoa":"Uttlesford 007B","msoa":"Uttlesford 007","incode":"1EJ","outcode":"CM6","parliamentary_constituency":"Saffron Walden","admin_district":"Uttlesford","parish":"Great Dunmow","admin_county":"Essex","admin_ward":"Great Dunmow South & Barnston","ced":"Dunmow","ccg":"NHS West Essex","nuts":"West Essex","codes":{"admin_district":"E07000077","admin_county":"E10000012","admin_ward":"E05009918","parish":"E04012937","parliamentary_constituency":"E14000910","ccg":"E38000197","ccg_id":"07H","ced":"E58000429","nuts":"UKH35"}}}'
+            etag: 'W/"30d-RA96JeFF57WzkyAqDJKz7we8mi0"'
+        body: '{"status":200,"result":{"postcode":"SE6 1AT","quality":1,"eastings":538550,"northings":173646,"country":"England","nhs_ha":"London","longitude":-0.007733,"latitude":51.444864,"european_electoral_region":"London","primary_care_trust":"Lewisham","region":"London","lsoa":"Lewisham 022E","msoa":"Lewisham 022","incode":"1AT","outcode":"SE6","parliamentary_constituency":"Lewisham East","admin_district":"Lewisham","parish":"Lewisham, unparished area","admin_county":null,"admin_ward":"Catford South","ced":null,"ccg":"NHS Lewisham","nuts":"Lewisham and Southwark","codes":{"admin_district":"E09000023","admin_county":"E99999999","admin_ward":"E05000440","parish":"E43000213","parliamentary_constituency":"E14000787","ccg":"E38000098","ccg_id":"08L","ced":"E99999999","nuts":"UKI44"}}}'
 -
     request:
         method: GET
-        url: 'https://api.postcodes.io/postcodes/CM6%201EJ'
+        url: 'https://api.postcodes.io/postcodes/SE6%201AT'
         headers:
             Host: api.postcodes.io
             Content-Type: application/json
@@ -34,10 +34,10 @@
             message: ''
         headers:
             server: nginx/1.14.0
-            date: 'Thu, 07 May 2020 22:31:01 GMT'
+            date: 'Fri, 08 May 2020 16:45:59 GMT'
             content-type: 'application/json; charset=utf-8'
-            content-length: '806'
+            content-length: '781'
             x-gnu: 'Michael J Blanchard'
             access-control-allow-origin: '*'
-            etag: 'W/"326-oP5J4GKMSQAI4dx3jm/LSlk9SnU"'
-        body: '{"status":200,"result":{"postcode":"CM6 1EJ","quality":1,"eastings":563138,"northings":221527,"country":"England","nhs_ha":"East of England","longitude":0.3681,"latitude":51.868466,"european_electoral_region":"Eastern","primary_care_trust":"West Essex","region":"East of England","lsoa":"Uttlesford 007B","msoa":"Uttlesford 007","incode":"1EJ","outcode":"CM6","parliamentary_constituency":"Saffron Walden","admin_district":"Uttlesford","parish":"Great Dunmow","admin_county":"Essex","admin_ward":"Great Dunmow South & Barnston","ced":"Dunmow","ccg":"NHS West Essex","nuts":"West Essex","codes":{"admin_district":"E07000077","admin_county":"E10000012","admin_ward":"E05009918","parish":"E04012937","parliamentary_constituency":"E14000910","ccg":"E38000197","ccg_id":"07H","ced":"E58000429","nuts":"UKH35"}}}'
+            etag: 'W/"30d-RA96JeFF57WzkyAqDJKz7we8mi0"'
+        body: '{"status":200,"result":{"postcode":"SE6 1AT","quality":1,"eastings":538550,"northings":173646,"country":"England","nhs_ha":"London","longitude":-0.007733,"latitude":51.444864,"european_electoral_region":"London","primary_care_trust":"Lewisham","region":"London","lsoa":"Lewisham 022E","msoa":"Lewisham 022","incode":"1AT","outcode":"SE6","parliamentary_constituency":"Lewisham East","admin_district":"Lewisham","parish":"Lewisham, unparished area","admin_county":null,"admin_ward":"Catford South","ced":null,"ccg":"NHS Lewisham","nuts":"Lewisham and Southwark","codes":{"admin_district":"E09000023","admin_county":"E99999999","admin_ward":"E05000440","parish":"E43000213","parliamentary_constituency":"E14000787","ccg":"E38000098","ccg_id":"08L","ced":"E99999999","nuts":"UKI44"}}}'
