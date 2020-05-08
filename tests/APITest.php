@@ -67,7 +67,7 @@ class APITest extends TestCase
     public function testRandomServerError()
     {
         $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
-        $this->expectExceptionMessage('An error occurred whilst trying to validate');
+        $this->expectExceptionMessage('An error occurred whilst trying to select a random postcode');
 
         /** @var PostCode $random */
         $random = $this->api->random();
