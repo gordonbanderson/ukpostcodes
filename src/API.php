@@ -164,19 +164,27 @@ class API
         }
     }
 
-
-    public function query($postcode)
+    /**
+     * This is the same as partial() except that it returns in full the postcode details, not just the postcode string
+     *
+     * @param string $partialPostCode the partial postcode, e.g. KY16
+     * @throws PostCodeServerException
+     */
+    public function query($partialPostCode) : array
     {
-        $jsonurl = "https://api.postcodes.io/postcodes?q=".$postcode;
+        $jsonurl = "https://api.postcodes.io/postcodes?q=".$partialPostCode;
         $json = $this->request($jsonurl);
-
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            $postcodesArray = [];
+            foreach($decoded['result'] as $singlePostcodeDetails) {
+                $postcodeObj = new PostCode($singlePostcodeDetails);
+                $postcodesArray[] = $postcodeObj;
+            }
+            return $postcodesArray;
         } else {
-            return false;
+            throw new PostCodeServerException('An error occurred whilst trying to lookup postcodes');
         }
-        return false;
     }
 
 
