@@ -177,7 +177,7 @@ class API
         $decoded = json_decode($json, true);
         if ($decoded['status'] == 200) {
             $postcodesArray = [];
-            foreach($decoded['result'] as $singlePostcodeDetails) {
+            foreach ($decoded['result'] as $singlePostcodeDetails) {
                 $postcodeObj = new PostCode($singlePostcodeDetails);
                 $postcodesArray[] = $postcodeObj;
             }
