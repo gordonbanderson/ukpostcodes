@@ -33,6 +33,21 @@ class APITest extends TestCase
         $this->assertEquals('SW1A 2AA', $lookup->postcode);
     }
 
+
+    /**
+     * @test
+     * @vcr testlookupservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testLookupServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to lookup postcode');
+
+        $lookup = $this->api->lookup('SW1A 2AA');
+
+    }
+
     /**
      * @test
      * @vcr testnearest.yml
