@@ -78,6 +78,44 @@ class APITest extends TestCase
         ], $postcodes);
     }
 
+
+    /**
+     * @test
+     * @vcr testnearestoutwardcode.yml
+     * @group PhpVcrTest
+     */
+    public function testNearestOutwardCode()
+    {
+
+        $nearest = $this->api->nearestOutwardCode('RH1');
+
+        error_log(print_r($nearest, 1));
+
+
+        /*
+        // check the returned values are all objeccts of class PostCode
+        foreach ($nearest as $postcodeObj) {
+            $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
+        }
+
+        // assert the nearest postcodes
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $nearest);
+        $this->assertEquals([
+            'SW1A 2AA',
+            'SW1A 2AB',
+            'SW1A 2AD',
+            'SW1A 2AG',
+            'SW1A 2AL',
+            'SW1A 2AS',
+            'SW1A 2AT',
+            'SW1A 2AU',
+        ], $postcodes);
+        */
+    }
+
+
     /**
      * @test
      * @vcr testnearestservererror.yml
@@ -230,6 +268,20 @@ class APITest extends TestCase
 
         $this->assertIsFloat($distance);
         $this->assertEquals(533.5758759840621, $distance);
+    }
+
+    /**
+     * @test
+     * @vcr testdistanceninvalidpostcodes.yml
+     * @group PhpVcrTest
+     */
+    public function testDistanceInvalidPostCodes()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('One or both of aasdaoisfuoiasudfoiusid & EH99 1SP are invalid');
+
+        /** @var float $distance Distance between Scottish and English parliaments */
+        $distance = $this->api->distance('aasdaoisfuoiasudfoiusid', 'EH99 1SP', Distance::KM);
     }
 
     /**

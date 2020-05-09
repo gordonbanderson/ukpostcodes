@@ -1,0 +1,22 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes/aasdaoisfuoiasudfoiusid'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '404'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sat, 09 May 2020 20:05:01 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '41'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"29-T14TWaKfjMuMFPoRgcsDj2g1ORs"'
+        body: '{"status":404,"error":"Invalid postcode"}'
