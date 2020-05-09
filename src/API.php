@@ -65,7 +65,8 @@ class API
             return new PostCode($decoded['result']);
         } else {
             throw new PostCodeServerException(
-                'An error occurred whilst trying to lookup postcode for given coordinates');
+                'An error occurred whilst trying to lookup postcode for given coordinates'
+            );
         }
     }
 
@@ -139,6 +140,11 @@ class API
     }
 
 
+    /**
+     * @param string $postcode
+     * @return array<PostCode> PostCode objects near the original postcode specifed by a string
+     * @throws PostCodeServerException
+     */
     public function nearest($postcode)
     {
         $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/nearest";
@@ -157,7 +163,7 @@ class API
      * Autocomplete a partial postcode
      *
      * @param string $partialPostCode The start of an incomplete postcode, e.g. KY12
-     * @return array Array of postcode strings
+     * @return array<string> Array of postcode strings
      * @throws PostCodeServerException
      */
     public function partial($partialPostCode)
@@ -228,6 +234,8 @@ class API
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
+
+        error_log(print_r($decoded, 1));
         if ($decoded['status'] == 200) {
             return  $decoded['result'];
         } else {
@@ -270,10 +278,11 @@ class API
             N = Nautical Miles
             K = Kilometers
         */
-        $postcode1 = $this->lookup($postcode1);
-        $postcode2 = $this->lookup($postcode2);
 
-        if ($postcode1 == null || $postcode2 == null) {
+        try {
+            $postcode1 = $this->lookup($postcode1);
+            $postcode2 = $this->lookup($postcode2);
+        } catch (PostCodeServerException $ex) {
             throw new PostCodeServerException("One or both of {$postcode1} & {$postcode2} are invalid");
         }
 
