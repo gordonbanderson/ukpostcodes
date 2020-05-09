@@ -1,0 +1,24 @@
+
+-
+    request:
+        method: POST
+        url: 'https://api.postcodes.io/postcodes'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+            Content-Length: '48'
+        body: '{"postcodes":["SW1A 2AA","KY16 9SS","KY11 3ED"]}'
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sat, 09 May 2020 22:22:39 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '2625'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"a41-LqJ9U1UMlizsVSAsY3+L/gIlZdY"'
+        body: '{"status":200,"result":[{"query":"SW1A 2AA","result":{"postcode":"SW1A 2AA","quality":1,"eastings":530047,"northings":179951,"country":"England","nhs_ha":"London","longitude":-0.127695,"latitude":51.50354,"european_electoral_region":"London","primary_care_trust":"Westminster","region":"London","lsoa":"Westminster 018C","msoa":"Westminster 018","incode":"2AA","outcode":"SW1A","parliamentary_constituency":"Cities of London and Westminster","admin_district":"Westminster","parish":"Westminster, unparished area","admin_county":null,"admin_ward":"St James''s","ced":null,"ccg":"NHS Central London (Westminster)","nuts":"Westminster","codes":{"admin_district":"E09000033","admin_county":"E99999999","admin_ward":"E05000644","parish":"E43000236","parliamentary_constituency":"E14000639","ccg":"E38000031","ccg_id":"09A","ced":"E99999999","nuts":"UKI32"}}},{"query":"KY16 9SS","result":{"postcode":"KY16 9SS","quality":1,"eastings":350100,"northings":716738,"country":"Scotland","nhs_ha":"Fife","longitude":-2.808787,"latitude":56.340349,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9SS","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"}}},{"query":"KY11 3ED","result":{"postcode":"KY11 3ED","quality":1,"eastings":306612,"northings":683569,"country":"Scotland","nhs_ha":"Fife","longitude":-3.500364,"latitude":56.03587,"european_electoral_region":"Scotland","primary_care_trust":"Dunfermline and West Fife Community Health Partnership","region":null,"lsoa":"Charlestown and Bellknowes","msoa":"Crossford Charlestown and Limekilns","incode":"3ED","outcode":"KY11","parliamentary_constituency":"Dunfermline and West Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"Rosyth","ced":null,"ccg":"Dunfermline and West Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002949","parish":"S99999999","parliamentary_constituency":"S14000017","ccg":"S03000006","ccg_id":"006","ced":"S99999999","nuts":"UKM72"}}}]}'

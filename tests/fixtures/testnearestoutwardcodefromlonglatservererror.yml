@@ -1,0 +1,22 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/outcodes?lon=0.62983472377531&lat=51.792324697737'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '500'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sat, 09 May 2020 22:18:13 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '639'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"27f-O2ERivnTuEkOe4FXDnvUaEjWbBQ"'
+        body: '{"status":500,"result":[{"outcode":"CM8","longitude":0.637394520737327,"latitude":51.8054151843318,"northings":215153,"eastings":581929,"admin_district":["Braintree","Maldon"],"parish":["Little Braxted","Faulkbourne","Black Notley","Rivenhall","Great Totham","Cressing","Witham","Great Braxted","White Notley","Silver End","Hatfield Peverel","Wickham Bishops"],"admin_county":["Essex"],"admin_ward":["Witham North","Witham Central","Great Totham","Wickham Bishops and Woodham","Silver End & Cressing","Witham West","Witham South","Hatfield Peverel & Terling","Great Notley & Black Notley"],"country":["England"],"distance":1547.04632793}]}'

@@ -22,7 +22,50 @@ class APITest extends TestCase
         $this->api = new API();
     }
 
+
     /**
+     * @test
+     * @vcr testbulklookup.yml
+     * @group PhpVcrTest
+     */
+    public function testBulkLookup()
+    {
+        $postcodeObjects = $this->api->bulkLookup([
+            'SW1A 2AA',
+            'KY16 9SS',
+            'KY11 3ED'
+        ]);
+
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $postcodeObjects);
+        $this->assertEquals([
+            'SW1A 2AA',
+            'KY16 9SS',
+            'KY11 3ED'
+        ], $postcodes);
+
+    }
+
+
+    /**
+     * @test
+     * @vcr testbulklookupservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testBulkLookupServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('Bulk lookup of postcodes failed');
+
+        $postcodeObjects = $this->api->bulkLookup([
+            'SW1A 2AA',
+            'KY16 9SS',
+            'KY11 3ED'
+        ]);
+    }
+
+        /**
      * @test
      * @vcr testlookup.yml
      * @group PhpVcrTest
@@ -189,6 +232,46 @@ class APITest extends TestCase
 
         $lookup = $this->api->lookupOutwardCode('RH1');
     }
+
+
+    /**
+     * @test
+     * @vcr testnearestoutwardcodefromlonglat.yml
+     * @group PhpVcrTest
+     */
+    public function testNearestOutwardCodeFromLongLat()
+    {
+        $lookup = $this->api->nearestOutwardCodeFromLongLat(0.629834723775309, 51.7923246977375);
+
+        // check the returned values are all objeccts of class OutCode
+        foreach ($lookup as $outcodeObj) {
+            $this->assertEquals('Suilven\UKPostCodes\Models\OutCode', get_class($outcodeObj));
+        }
+
+        // assert the nearest postcodes
+        $postcodes = array_map(function ($p) {
+            return $p->outcode;
+        }, $lookup);
+        $this->assertEquals([
+            'CM8'
+        ], $postcodes);
+    }
+
+
+
+    /**
+     * @test
+     * @vcr testnearestoutwardcodefromlonglatservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testNearestOutwardCodeFromLongLatServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to autocomplete a postcode');
+
+        $this->api->nearestOutwardCodeFromLongLat(0.629834723775309, 51.7923246977375);
+    }
+
 
 
     /**
