@@ -165,7 +165,7 @@ class APITest extends TestCase
     }
 
 
-        /**
+    /**
      * @test
      * @vcr testnearestoutwardcode.yml
      * @group PhpVcrTest
@@ -177,28 +177,32 @@ class APITest extends TestCase
 
         error_log(print_r($nearest, 1));
 
-
-        /*
         // check the returned values are all objeccts of class PostCode
         foreach ($nearest as $postcodeObj) {
-            $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
+            $this->assertEquals('Suilven\UKPostCodes\Models\OutCode', get_class($postcodeObj));
         }
 
         // assert the nearest postcodes
         $postcodes = array_map(function ($p) {
-            return $p->postcode;
+            return $p->admin_county;
         }, $nearest);
         $this->assertEquals([
-            'SW1A 2AA',
-            'SW1A 2AB',
-            'SW1A 2AD',
-            'SW1A 2AG',
-            'SW1A 2AL',
-            'SW1A 2AS',
-            'SW1A 2AT',
-            'SW1A 2AU',
+            ['Surrey'],
+            ['Surrey']
         ], $postcodes);
-        */
+    }
+
+
+    /**
+     * @test
+     * @vcr testnearestoutwardcodeservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testNearestOutwardCodeServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to execute nearestOutwardCode');
+        $this->api->nearestOutwardCode('RH1');
     }
 
 
