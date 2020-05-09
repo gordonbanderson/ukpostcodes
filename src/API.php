@@ -6,6 +6,7 @@ namespace Suilven\UKPostCodes;
 
 use Suilven\UKPostCodes\Exceptions\PostCodeServerException;
 use Suilven\UKPostCodes\Models\Distance;
+use Suilven\UKPostCodes\Models\OutCode;
 use Suilven\UKPostCodes\Models\PostCode;
 
 class API
@@ -239,7 +240,7 @@ class API
 
         error_log(print_r($decoded, 1));
         if ($decoded['status'] == 200) {
-            return  $decoded['result'];
+            return  $this->parseOutCodeArray($decoded['result']);
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to execute nearestOutwardCode");
         }
@@ -344,5 +345,25 @@ class API
         }
 
         return $postcodesArray;
+    }
+
+
+    /**
+     * Convert the response of several outcodes into an array of OutCode objects
+     * @param array $outcodesArrayResponse Response from the postcodes.io server
+     * @return array<OutCode>
+     */
+    private function parseOutCodeArray($outcodesArrayResponse)
+    {
+        $outcodesArray = [];
+
+        if (!empty($outcodesArrayResponse)) {
+            foreach ($outcodesArrayResponse as $singleOutCodeDetails) {
+                $outcodeObj = new OutCode($singleOutCodeDetails);
+                $outcodesArray[] = $outcodeObj;
+            }
+        }
+
+        return $outcodesArray;
     }
 }
