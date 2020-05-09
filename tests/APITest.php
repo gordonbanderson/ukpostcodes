@@ -47,6 +47,55 @@ class APITest extends TestCase
         $lookup = $this->api->lookup('SW1A 2AA');
     }
 
+
+    /**
+     * @test
+     * @vcr testreversegeocode.yml
+     * @group PhpVcrTest
+     */
+    public function testReverseGeocode()
+    {
+        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0.629834723775309, 51.7923246977375);
+
+        // assert the nearest postcodes
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $postcodeObjects);
+        $this->assertEquals([
+            'CM8 1EF',
+            'CM8 1EU',
+            'CM8 1PH',
+            'CM8 1PQ',
+        ], $postcodes);
+    }
+
+
+    /**
+     * @test
+     * @vcr testreversegeocodeinvalidlocation.yml
+     * @group PhpVcrTest
+     */
+    public function testReverseGeocodeInvalidLocation()
+    {
+        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0,0);
+        $this->assertEquals([], $postcodeObjects);
+    }
+
+
+    /**
+     * @test
+     * @vcr testreversegeocodeservereror.yml
+     * @group PhpVcrTest
+     */
+    public function testReverseGeocodeInvalidLocationServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to lookup postcode for given coordinates');
+
+        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0,0);
+    }
+
+
     /**
      * @test
      * @vcr testnearest.yml
@@ -79,7 +128,44 @@ class APITest extends TestCase
     }
 
 
+
     /**
+     * @test
+     * @vcr testlookupnonterminated.yml
+     * @group PhpVcrTest
+     */
+    public function testLookupTerminatedPostcode()
+    {
+        // AB1 0AA postcode is terminated
+        /** @var PostCode $terminated */
+        $terminated = $this->api->lookupTerminated('AB1 0AA');
+
+        $this->assertEquals(57.101474, $terminated->latitude);
+        $this->assertEquals(-2.242851, $terminated->longitude);
+        $this->assertEquals(6, $terminated->month_terminated);
+        $this->assertEquals('AB1 0AA', $terminated->postcode);
+        $this->assertEquals(1996, $terminated->year_terminated);
+        $this->assertTrue($terminated->terminated);
+
+
+    }
+
+    /**
+     * @test
+     * @vcr testlookupnonterminated.yml
+     * @group PhpVcrTest
+     */
+    public function testLookupNonTerminated()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('An error occurred whilst trying to select a terminated postcode');
+
+        // this postcode is not terminated
+        $this->api->lookupTerminated('KY16 9SS');
+    }
+
+
+        /**
      * @test
      * @vcr testnearestoutwardcode.yml
      * @group PhpVcrTest
@@ -335,4 +421,6 @@ class APITest extends TestCase
         $validated = $this->api->validate('KYAB92A');
         $this->assertFalse($validated);
     }
+
+
 }
