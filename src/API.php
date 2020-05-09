@@ -62,7 +62,7 @@ class API
 
         $decoded = json_decode($json, true);
         if ($decoded['status'] == 200) {
-            return new PostCode($decoded['result']);
+            return $this->parsePostCodeArray($decoded['result']);
         } else {
             throw new PostCodeServerException(
                 'An error occurred whilst trying to lookup postcode for given coordinates'
@@ -205,11 +205,13 @@ class API
         $jsonurl = "https://api.postcodes.io/terminated_postcodes/".$postcode;
         $json = $this->request($jsonurl);
 
-        $decoded = json_decode($json);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($json, true);
+        if ($decoded['status'] == 200) {
+            $postcode = new PostCode($decoded['result']);
+            $postcode->terminated = true;
+            return $postcode;
         } else {
-            return false;
+            throw new PostCodeServerException("An error occurred whilst trying to select a terminated postcode");
         }
     }
 
@@ -333,10 +335,14 @@ class API
     private function parsePostCodeArray($postcodeArrayResponse)
     {
         $postcodesArray = [];
-        foreach ($postcodeArrayResponse as $singlePostcodeDetails) {
-            $postcodeObj = new PostCode($singlePostcodeDetails);
-            $postcodesArray[] = $postcodeObj;
+
+        if (!empty($postcodeArrayResponse)) {
+            foreach ($postcodeArrayResponse as $singlePostcodeDetails) {
+                $postcodeObj = new PostCode($singlePostcodeDetails);
+                $postcodesArray[] = $postcodeObj;
+            }
         }
+
         return $postcodesArray;
     }
 }
