@@ -223,8 +223,11 @@ class API
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
+
+        error_log(print_r($decoded, 1));
+
         if ($decoded['status'] == 200) {
-            return  $decoded['result'];
+            return  new OutCode($decoded['result']);
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to execute lookupOutwardCode");
         }
