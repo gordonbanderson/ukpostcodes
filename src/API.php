@@ -4,6 +4,7 @@ namespace Suilven\UKPostCodes;
 
 //Based on code by Ryan Hart 2016 https://github.com/ryryan/Postcodes-IO-PHP/blob/master/Postcodes-IO-PHP.php
 
+use Hoa\Stream\IStream\Out;
 use Suilven\UKPostCodes\Exceptions\PostCodeServerException;
 use Suilven\UKPostCodes\Models\Distance;
 use Suilven\UKPostCodes\Models\OutCode;
@@ -17,7 +18,7 @@ class API
      */
     public function lookup($postcode)
     {
-        $jsonurl = "https://api.postcodes.io/postcodes/".$postcode;
+        $jsonurl = "https://api.postcodes.io/postcodes/" . $postcode;
         $json = $this->request($jsonurl);
         $decoded = json_decode($json, true);
         if ($decoded['status'] == 200) {
@@ -36,16 +37,26 @@ class API
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($data_string)));
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data_string)));
 
         $result = curl_exec($ch);
         curl_close($ch);
-        $decoded = json_decode($result);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($result, true);
+
+        $postcodes = [];
+
+        if ($decoded['status'] == 200) {
+            foreach ($decoded['result'] as $singleResponse) {
+                $result = $singleResponse['result'];
+                error_log('RESULT');
+                error_log(print_r($result, 1));
+                $postcode = new PostCode($result);
+                $postcodes[] = $postcode;
+            }
+            return $postcodes;
         } else {
-            return false;
+            throw new PostCodeServerException('Bulk lookup of postcodes failed');
         }
     }
 
@@ -56,9 +67,9 @@ class API
      * @return array<PostCode>
      * @throws PostCodeServerException
      */
-    public function nearestPostcodesFromLongLat($longitude, $latitude) : array
+    public function nearestPostcodesFromLongLat($longitude, $latitude): array
     {
-        $jsonurl = "https://api.postcodes.io/postcodes?lon=".$longitude."&lat=".$latitude;
+        $jsonurl = "https://api.postcodes.io/postcodes?lon=" . $longitude . "&lat=" . $latitude;
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
@@ -72,7 +83,6 @@ class API
     }
 
 
-
     public function bulkReverseGeocoding($geolocations)
     {
         $data_string = json_encode(array('geolocations' => $geolocations));
@@ -82,8 +92,8 @@ class API
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($data_string)));
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data_string)));
 
         $result = curl_exec($ch);
         curl_close($ch);
@@ -125,7 +135,7 @@ class API
      */
     public function validate($postcode): bool
     {
-        $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/validate";
+        $jsonurl = "https://api.postcodes.io/postcodes/" . $postcode . "/validate";
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json);
@@ -148,7 +158,7 @@ class API
      */
     public function nearest($postcode)
     {
-        $jsonurl = "https://api.postcodes.io/postcodes/".$postcode."/nearest";
+        $jsonurl = "https://api.postcodes.io/postcodes/" . $postcode . "/nearest";
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
@@ -169,12 +179,12 @@ class API
      */
     public function partial($partialPostCode)
     {
-        $jsonurl = "https://api.postcodes.io/postcodes/".$partialPostCode."/autocomplete";
+        $jsonurl = "https://api.postcodes.io/postcodes/" . $partialPostCode . "/autocomplete";
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
         if ($decoded['status'] == 200) {
-            return  $decoded['result'];
+            return $decoded['result'];
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to autocomplete a postcode");
         }
@@ -187,9 +197,9 @@ class API
      * @return array<PostCode> an array of PostCode objects
      * @throws PostCodeServerException
      */
-    public function query($partialPostCode) : array
+    public function query($partialPostCode): array
     {
-        $jsonurl = "https://api.postcodes.io/postcodes?q=".$partialPostCode;
+        $jsonurl = "https://api.postcodes.io/postcodes?q=" . $partialPostCode;
         $json = $this->request($jsonurl);
         $decoded = json_decode($json, true);
         if ($decoded['status'] == 200) {
@@ -200,10 +210,9 @@ class API
     }
 
 
-
     public function lookupTerminated($postcode)
     {
-        $jsonurl = "https://api.postcodes.io/terminated_postcodes/".$postcode;
+        $jsonurl = "https://api.postcodes.io/terminated_postcodes/" . $postcode;
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
@@ -219,7 +228,7 @@ class API
 
     public function lookupOutwardCode($code)
     {
-        $jsonurl = "https://api.postcodes.io/outcodes/".$code;
+        $jsonurl = "https://api.postcodes.io/outcodes/" . $code;
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
@@ -227,7 +236,7 @@ class API
         error_log(print_r($decoded, 1));
 
         if ($decoded['status'] == 200) {
-            return  new OutCode($decoded['result']);
+            return new OutCode($decoded['result']);
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to execute lookupOutwardCode");
         }
@@ -236,14 +245,14 @@ class API
 
     public function nearestOutwardCode($code)
     {
-        $jsonurl = "https://api.postcodes.io/outcodes/".$code."/nearest";
+        $jsonurl = "https://api.postcodes.io/outcodes/" . $code . "/nearest";
         $json = $this->request($jsonurl);
 
         $decoded = json_decode($json, true);
 
         error_log(print_r($decoded, 1));
         if ($decoded['status'] == 200) {
-            return  $this->parseOutCodeArray($decoded['result']);
+            return $this->parseOutCodeArray($decoded['result']);
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to execute nearestOutwardCode");
         }
@@ -252,16 +261,20 @@ class API
     /**
      * @param float $longitude the longitude of the coordinate
      * @param float $latitude the latitude of the coordinate
-     * @return bool
+     * @return array<OutCode>
      */
-    public function nearestOutwardCodeFromLongLat($longitude, $latitude)
+    public function nearestOutwardCodeFromLongLat($longitude, $latitude): array
     {
-        $jsonurl = "https://api.postcodes.io/outcodes?lon=".$longitude."&lat=".$latitude;
+        $jsonurl = "https://api.postcodes.io/outcodes?lon=" . $longitude . "&lat=" . $latitude;
         $json = $this->request($jsonurl);
 
+        error_log('T1');
         $decoded = json_decode($json, true);
+        error_log('T2');
+
         if ($decoded['status'] == 200) {
-            return  $decoded['result'];
+            error_log('T3');
+            return $this->parseOutCodeArray($decoded['result']);
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to autocomplete a postcode");
         }
@@ -322,7 +335,7 @@ class API
         curl_setopt($ch, CURLOPT_URL, str_replace(' ', '%20', $jsonurl));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-          'Content-Type: application/json',
+            'Content-Type: application/json',
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec($ch);
