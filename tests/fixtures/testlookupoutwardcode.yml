@@ -1,0 +1,22 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/outcodes/RH1'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sat, 09 May 2020 21:47:56 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '631'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"277-QQhfkqORdJCfEgvc3deuW110tho"'
+        body: '{"status":200,"result":{"outcode":"RH1","longitude":-0.15766867173739,"latitude":51.2373294243395,"northings":150295,"eastings":528710,"admin_district":["Tandridge","Reigate and Banstead"],"parish":["Reigate and Banstead, unparished area","Bletchingley","Nutfield","Outwood","Salfords and Sidlow"],"admin_county":["Surrey"],"admin_ward":["Chipstead, Kingswood & Woodmansterne","Earlswood & Whitebushes","Bletchingley and Nutfield","Redhill East","South Park & Woodhatch","Burstow, Horne and Outwood","Hooley, Merstham & Netherne","Horley East & Salfords","Redhill West & Wray Common","Meadvale & St John''s"],"country":["England"]}}'
