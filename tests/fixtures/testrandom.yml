@@ -13,17 +13,17 @@
             message: ''
         headers:
             server: nginx/1.14.0
-            date: 'Fri, 08 May 2020 16:45:00 GMT'
+            date: 'Sat, 09 May 2020 20:45:27 GMT'
             content-type: 'application/json; charset=utf-8'
-            content-length: '781'
+            content-length: '817'
             x-gnu: 'Michael J Blanchard'
             access-control-allow-origin: '*'
-            etag: 'W/"30d-RA96JeFF57WzkyAqDJKz7we8mi0"'
-        body: '{"status":200,"result":{"postcode":"SE6 1AT","quality":1,"eastings":538550,"northings":173646,"country":"England","nhs_ha":"London","longitude":-0.007733,"latitude":51.444864,"european_electoral_region":"London","primary_care_trust":"Lewisham","region":"London","lsoa":"Lewisham 022E","msoa":"Lewisham 022","incode":"1AT","outcode":"SE6","parliamentary_constituency":"Lewisham East","admin_district":"Lewisham","parish":"Lewisham, unparished area","admin_county":null,"admin_ward":"Catford South","ced":null,"ccg":"NHS Lewisham","nuts":"Lewisham and Southwark","codes":{"admin_district":"E09000023","admin_county":"E99999999","admin_ward":"E05000440","parish":"E43000213","parliamentary_constituency":"E14000787","ccg":"E38000098","ccg_id":"08L","ced":"E99999999","nuts":"UKI44"}}}'
+            etag: 'W/"331-ykSX+SW0um0KzNJWUOeMUzHOCSo"'
+        body: '{"status":200,"result":{"postcode":"CV22 6NT","quality":1,"eastings":449041,"northings":271034,"country":"England","nhs_ha":"West Midlands","longitude":-1.281694,"latitude":52.335207,"european_electoral_region":"West Midlands","primary_care_trust":"Warwickshire","region":"West Midlands","lsoa":"Rugby 012A","msoa":"Rugby 012","incode":"6NT","outcode":"CV22","parliamentary_constituency":"Kenilworth and Southam","admin_district":"Rugby","parish":"Dunchurch","admin_county":"Warwickshire","admin_ward":"Dunsmore","ced":"Dunsmore & Leam Valley","ccg":"NHS Coventry and Rugby","nuts":"Warwickshire","codes":{"admin_district":"E07000220","admin_county":"E10000031","admin_ward":"E05010759","parish":"E04012404","parliamentary_constituency":"E14000767","ccg":"E38000038","ccg_id":"05A","ced":"E58001563","nuts":"UKG13"}}}'
 -
     request:
         method: GET
-        url: 'https://api.postcodes.io/postcodes/SE6%201AT'
+        url: 'https://api.postcodes.io/postcodes/CV22%206NT'
         headers:
             Host: api.postcodes.io
             Content-Type: application/json
@@ -34,10 +34,10 @@
             message: ''
         headers:
             server: nginx/1.14.0
-            date: 'Fri, 08 May 2020 16:45:59 GMT'
+            date: 'Sat, 09 May 2020 20:45:27 GMT'
             content-type: 'application/json; charset=utf-8'
-            content-length: '781'
+            content-length: '817'
             x-gnu: 'Michael J Blanchard'
             access-control-allow-origin: '*'
-            etag: 'W/"30d-RA96JeFF57WzkyAqDJKz7we8mi0"'
-        body: '{"status":200,"result":{"postcode":"SE6 1AT","quality":1,"eastings":538550,"northings":173646,"country":"England","nhs_ha":"London","longitude":-0.007733,"latitude":51.444864,"european_electoral_region":"London","primary_care_trust":"Lewisham","region":"London","lsoa":"Lewisham 022E","msoa":"Lewisham 022","incode":"1AT","outcode":"SE6","parliamentary_constituency":"Lewisham East","admin_district":"Lewisham","parish":"Lewisham, unparished area","admin_county":null,"admin_ward":"Catford South","ced":null,"ccg":"NHS Lewisham","nuts":"Lewisham and Southwark","codes":{"admin_district":"E09000023","admin_county":"E99999999","admin_ward":"E05000440","parish":"E43000213","parliamentary_constituency":"E14000787","ccg":"E38000098","ccg_id":"08L","ced":"E99999999","nuts":"UKI44"}}}'
+            etag: 'W/"331-ykSX+SW0um0KzNJWUOeMUzHOCSo"'
+        body: '{"status":200,"result":{"postcode":"CV22 6NT","quality":1,"eastings":449041,"northings":271034,"country":"England","nhs_ha":"West Midlands","longitude":-1.281694,"latitude":52.335207,"european_electoral_region":"West Midlands","primary_care_trust":"Warwickshire","region":"West Midlands","lsoa":"Rugby 012A","msoa":"Rugby 012","incode":"6NT","outcode":"CV22","parliamentary_constituency":"Kenilworth and Southam","admin_district":"Rugby","parish":"Dunchurch","admin_county":"Warwickshire","admin_ward":"Dunsmore","ced":"Dunsmore & Leam Valley","ccg":"NHS Coventry and Rugby","nuts":"Warwickshire","codes":{"admin_district":"E07000220","admin_county":"E10000031","admin_ward":"E05010759","parish":"E04012404","parliamentary_constituency":"E14000767","ccg":"E38000038","ccg_id":"05A","ced":"E58001563","nuts":"UKG13"}}}'

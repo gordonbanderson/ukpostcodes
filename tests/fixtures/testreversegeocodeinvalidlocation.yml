@@ -2,21 +2,21 @@
 -
     request:
         method: GET
-        url: 'https://api.postcodes.io/postcodes/KYAB92A/validate'
+        url: 'https://api.postcodes.io/postcodes?lon=0&lat=0'
         headers:
             Host: api.postcodes.io
             Content-Type: application/json
     response:
         status:
             http_version: '2'
-            code: '500'
+            code: '200'
             message: ''
         headers:
             server: nginx/1.14.0
-            date: 'Sat, 09 May 2020 20:45:28 GMT'
+            date: 'Sat, 09 May 2020 20:45:26 GMT'
             content-type: 'application/json; charset=utf-8'
-            content-length: '29'
+            content-length: '28'
             x-gnu: 'Michael J Blanchard'
             access-control-allow-origin: '*'
-            etag: 'W/"1d-kGyXwetKmZjsFg8WnsDgYjXmbe8"'
-        body: '{"status":500,"result":false}'
+            etag: 'W/"1c-C4NcFMR9ZJvtLuqE6P6UsNsSIg8"'
+        body: '{"status":200,"result":null}'

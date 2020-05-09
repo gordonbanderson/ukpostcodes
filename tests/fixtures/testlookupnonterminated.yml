@@ -1,0 +1,43 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/terminated_postcodes/KY16%209SS'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '404'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sat, 09 May 2020 21:02:37 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '54'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"36-GttZSTwwwLlS7Lnu5NllR3pXy/E"'
+        body: '{"status":404,"error":"Terminated postcode not found"}'
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/terminated_postcodes/AB1%200AA'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sat, 09 May 2020 21:14:59 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '133'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"85-TE5gR3E9d9dMc9evw3siw0N/wPM"'
+        body: '{"status":200,"result":{"postcode":"AB1 0AA","year_terminated":1996,"month_terminated":6,"longitude":-2.242851,"latitude":57.101474}}'

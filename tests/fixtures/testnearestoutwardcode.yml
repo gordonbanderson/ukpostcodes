@@ -2,27 +2,6 @@
 -
     request:
         method: GET
-        url: 'https://api.postcodes.io/outcodes/SW1A%202AA/nearest'
-        headers:
-            Host: api.postcodes.io
-            Content-Type: application/json
-    response:
-        status:
-            http_version: '2'
-            code: '404'
-            message: ''
-        headers:
-            server: nginx/1.14.0
-            date: 'Fri, 08 May 2020 19:52:45 GMT'
-            content-type: 'application/json; charset=utf-8'
-            content-length: '42'
-            x-gnu: 'Michael J Blanchard'
-            access-control-allow-origin: '*'
-            etag: 'W/"2a-W4gSv8NafctjbEXc0abgtnX66u0"'
-        body: '{"status":404,"error":"Outcode not found"}'
--
-    request:
-        method: GET
         url: 'https://api.postcodes.io/outcodes/RH1/nearest'
         headers:
             Host: api.postcodes.io
@@ -34,7 +13,7 @@
             message: ''
         headers:
             server: nginx/1.14.0
-            date: 'Fri, 08 May 2020 20:04:22 GMT'
+            date: 'Sat, 09 May 2020 20:45:26 GMT'
             content-type: 'application/json; charset=utf-8'
             content-length: '1235'
             x-gnu: 'Michael J Blanchard'
