@@ -141,3 +141,30 @@ $api = new Suilven\UKPostCodes\API();
 // false as there is no space in the postcode
 $validated = $this->api->validate('KYAB92A');
 ```
+
+
+# Docker Dev Environment
+## Starting
+Note that the first time this is executed the container will be built.
+```bash
+sudo docker-compose up -d phpcli
+```
+## Getting A Bash Prompt
+```bash
+sudo docker-compose exec phpcli /bin/bash
+```
+
+## Running Tests Locally
+```bash
+root@ukpostcodes.dev:/var/www> vendor/bin/phpunit tests/
+PHPUnit 7.5.20 by Sebastian Bergmann and contributors.
+
+..................................                                34 / 34 (100%)
+
+Time: 156 ms, Memory: 6.00 MB
+```
+
+## Generating Test Coverage
+```bash
+phpdbg -qrr vendor/bin/phpunit -d memory_limit=4G --coverage-html report   tests/
+```
