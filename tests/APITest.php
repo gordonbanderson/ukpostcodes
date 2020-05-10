@@ -79,6 +79,97 @@ class APITest extends TestCase
 
     /**
      * @test
+     * @vcr testbulkreversegeocoding.yml
+     * @group PhpVcrTest
+     */
+    public function testBulkReverseGeocoding()
+    {
+        // prime reverse geocoding with good data
+        $postcodeObjects = $this->api->bulkLookup([
+            'SW1A 2AA',
+            'KY16 9SS',
+            'KY11 3ED'
+        ]);
+
+        $coors = [];
+        foreach($postcodeObjects as $postcodeObject) {
+            $entry = [
+                'latitude' => $postcodeObject->latitude,
+                'longitude' => $postcodeObject->longitude,
+            ];
+
+            $coors[] = $entry;
+        }
+
+
+        $bulkReversed = $this->api->bulkReverseGeocoding($coors);
+
+        // check the returned values are all objects of class PostCode
+        foreach ($bulkReversed as $postcodeObjArray) {
+            foreach($postcodeObjArray as $postcodeObj) {
+                $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
+            }
+        }
+
+        // assert the nearest postcodes
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $bulkReversed[0]);
+        $this->assertEquals([
+            'SW1A 2AA',
+            'SW1A 2AB',
+            'SW1A 2AD',
+            'SW1A 2AG',
+            'SW1A 2AL',
+            'SW1A 2AS',
+            'SW1A 2AT',
+            'SW1A 2AU',
+        ], $postcodes);
+
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $bulkReversed[1]);
+        $this->assertEquals([
+            'KY16 9SS',
+            'KY16 9ST',
+            'KY16 9SX',
+            'KY16 9TF',
+            'KY16 9SR',
+        ], $postcodes);
+
+        $postcodes = array_map(function ($p) {
+            return $p->postcode;
+        }, $bulkReversed[2]);
+        $this->assertEquals([
+            'KY11 3ED',
+            'KY11 3EA',
+            'KY11 3EF',
+        ], $postcodes);
+
+    }
+
+
+    /**
+     * @test
+     * @vcr testbulkreversegeocodingservererror.yml
+     * @group PhpVcrTest
+     */
+    public function testBulkReverseGeocodingServerError()
+    {
+        $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
+        $this->expectExceptionMessage('Bulk lookup of postcodes failed');
+
+        $postcodeObjects = $this->api->bulkLookup([
+            'SW1A 2AA',
+            'KY16 9SS',
+            'KY11 3ED'
+        ]);
+
+    }
+
+    
+    /**
+     * @test
      * @vcr testlookupservererror.yml
      * @group PhpVcrTest
      */
