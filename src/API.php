@@ -14,9 +14,10 @@ class API
 {
     /**
      * @param string $postcode
-     * @return false|PostCode
+     *
+     * @return PostCode
      */
-    public function lookup($postcode)
+    public function lookup($postcode): PostCode
     {
         $jsonurl = "https://api.postcodes.io/postcodes/" . $postcode;
         $json = $this->request($jsonurl);
@@ -31,10 +32,14 @@ class API
 
     /**
      * @param string $postcodes postcodes as strings, e.g SW9 YSS
-     * @return array<PostCode>
+     *
+     * @return PostCode[]
+     *
      * @throws PostCodeServerException
+     *
+     * @psalm-return list<PostCode>
      */
-    public function bulkLookup($postcodes)
+    public function bulkLookup($postcodes): array
     {
         $data_string = json_encode(array('postcodes' => $postcodes));
         $ch = curl_init('https://api.postcodes.io/postcodes');
@@ -87,10 +92,14 @@ class API
 
     /**
      * @param array $geolocations an array of arrays keyed with latitude and longitude
-     * @return array<array> An array of arrays of PostCode
+     *
+     * @return PostCode[][] An array of arrays of PostCode
+     *
      * @throws PostCodeServerException if a server error occurs
+     *
+     * @psalm-return list<list<PostCode>>
      */
-    public function bulkReverseGeocoding($geolocations)
+    public function bulkReverseGeocoding($geolocations): array
     {
         $data_string = json_encode(array('geolocations' => $geolocations));
 
@@ -361,6 +370,7 @@ class API
      * Execute a request
      *
      * @param string $jsonurl
+     *
      * @return bool|string
      */
     public function request($jsonurl)
@@ -380,10 +390,14 @@ class API
 
     /**
      * Convert the response of several postcodes into an array of PostCode objects
+     *
      * @param array $postcodeArrayResponse
-     * @return array<PostCode>
+     *
+     * @return PostCode[]
+     *
+     * @psalm-return list<PostCode>
      */
-    private function parsePostCodeArray($postcodeArrayResponse)
+    private function parsePostCodeArray($postcodeArrayResponse): array
     {
         $postcodesArray = [];
 
@@ -400,10 +414,14 @@ class API
 
     /**
      * Convert the response of several outcodes into an array of OutCode objects
+     *
      * @param array $outcodesArrayResponse Response from the postcodes.io server
-     * @return array<OutCode>
+     *
+     * @return OutCode[]
+     *
+     * @psalm-return list<OutCode>
      */
-    private function parseOutCodeArray($outcodesArrayResponse)
+    private function parseOutCodeArray($outcodesArrayResponse): array
     {
         $outcodesArray = [];
 
