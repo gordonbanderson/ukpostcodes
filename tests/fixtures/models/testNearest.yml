@@ -1,0 +1,43 @@
+
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes/KY16%209SS'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sun, 10 May 2020 19:16:21 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '873'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"369-toip/gVYDmFI0T29GyURvpNZQV8"'
+        body: '{"status":200,"result":{"postcode":"KY16 9SS","quality":1,"eastings":350100,"northings":716738,"country":"Scotland","nhs_ha":"Fife","longitude":-2.808787,"latitude":56.340349,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9SS","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"}}}'
+-
+    request:
+        method: GET
+        url: 'https://api.postcodes.io/postcodes/KY16%209SS/nearest'
+        headers:
+            Host: api.postcodes.io
+            Content-Type: application/json
+    response:
+        status:
+            http_version: '2'
+            code: '200'
+            message: ''
+        headers:
+            server: nginx/1.14.0
+            date: 'Sun, 10 May 2020 19:16:21 GMT'
+            content-type: 'application/json; charset=utf-8'
+            content-length: '4370'
+            x-gnu: 'Michael J Blanchard'
+            access-control-allow-origin: '*'
+            etag: 'W/"1112-z58Tj6Js/kza3vE5VWVj5wHGdbo"'
+        body: '{"status":200,"result":[{"postcode":"KY16 9SS","quality":1,"eastings":350100,"northings":716738,"country":"Scotland","nhs_ha":"Fife","longitude":-2.808787,"latitude":56.340349,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9SS","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"},"distance":0},{"postcode":"KY16 9ST","quality":1,"eastings":350100,"northings":716738,"country":"Scotland","nhs_ha":"Fife","longitude":-2.808787,"latitude":56.340349,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9ST","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"},"distance":0},{"postcode":"KY16 9SX","quality":1,"eastings":350060,"northings":716693,"country":"Scotland","nhs_ha":"Fife","longitude":-2.809421,"latitude":56.339949,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9SX","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"},"distance":59.33866124},{"postcode":"KY16 9TF","quality":1,"eastings":350155,"northings":716759,"country":"Scotland","nhs_ha":"Fife","longitude":-2.807897,"latitude":56.340552,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9TF","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"},"distance":59.50103649},{"postcode":"KY16 9SR","quality":1,"eastings":350065,"northings":716657,"country":"Scotland","nhs_ha":"Fife","longitude":-2.809337,"latitude":56.339617,"european_electoral_region":"Scotland","primary_care_trust":"Glenrothes and North East Fife Community Health Partnership","region":null,"lsoa":"North Haugh","msoa":"St Andrews North and Strathkinness","incode":"9SR","outcode":"KY16","parliamentary_constituency":"North East Fife","admin_district":"Fife","parish":null,"admin_county":null,"admin_ward":"St Andrews","ced":null,"ccg":"Glenrothes and North East Fife Community Health Partnership","nuts":"Clackmannanshire and Fife","codes":{"admin_district":"S12000047","admin_county":"S99999999","admin_ward":"S13002962","parish":"S99999999","parliamentary_constituency":"S14000049","ccg":"S03000007","ccg_id":"007","ced":"S99999999","nuts":"UKM72"},"distance":88.31936656}]}'

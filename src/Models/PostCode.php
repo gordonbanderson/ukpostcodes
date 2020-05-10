@@ -3,6 +3,7 @@
 namespace Suilven\UKPostCodes\Models;
 
 use _HumbugBox7c6aed0dbb3c\Roave\BetterReflection\Reflection\Adapter\ReflectionObject;
+use Suilven\UKPostCodes\API;
 
 /**
  * Class PostCode
@@ -56,5 +57,17 @@ class PostCode
         foreach ($keys as $key) {
             $this->$key = $response[$key];
         }
+    }
+
+
+    /**
+     * Get the nearest postcodes to this postcode
+     * @return array|PostCode[]
+     * @throws \Suilven\UKPostCodes\Exceptions\PostCodeServerException
+     */
+    public function nearest()
+    {
+        $api = new API();
+        return $api->nearest($this->postcode);
     }
 }

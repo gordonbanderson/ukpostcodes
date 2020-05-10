@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Tests\Suilven\UKPostCodes\Factory;
 
 use PHPUnit\Framework\TestCase;
@@ -9,6 +7,11 @@ use Suilven\UKPostCodes\Factory\PostCodeFactory;
 use Suilven\UKPostCodes\Models\Distance;
 use Suilven\UKPostCodes\Models\PostCode;
 use Symfony\Component\VarExporter\VarExporter;
+
+/**
+ * Class FactoryTest
+ * @package Tests\Suilven\UKPostCodes\Factory
+ */
 
 class FactoryTest extends TestCase
 {
