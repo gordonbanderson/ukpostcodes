@@ -55,7 +55,13 @@ class PostCode
         $keys = array_keys($response);
         sort($keys);
         foreach ($keys as $key) {
-            $this->$key = $response[$key];
+            if ($key != 'codes') {
+                $this->$key = $response[$key];
+            }
+        }
+
+        if (isset($response['codes'])) {
+            $this->codes = new Codes($response['codes']);
         }
     }
 
