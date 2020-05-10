@@ -1,13 +1,10 @@
 <?php
-
-
 namespace Tests\Suilven\UKPostCodes;
 
 use PHPUnit\Framework\TestCase;
 use Suilven\UKPostCodes\API;
 use Suilven\UKPostCodes\Models\Distance;
 use Suilven\UKPostCodes\Models\PostCode;
-use Symfony\Component\VarExporter\VarExporter;
 
 class APITest extends TestCase
 {
