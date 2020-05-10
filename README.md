@@ -1,8 +1,6 @@
 # UK Postcodes API Wrapper
 [![Build Status](https://travis-ci.org/gordonbanderson/ukpostcodes.svg?branch=master)](https://travis-ci.org/gordonbanderson/ukpostcodes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/badges/build.png?b=master)](https://scrutinizer-ci.com/g/gordonbanderson/ukpostcodes/build-status/master)
-
 [![codecov.io](https://codecov.io/github/gordonbanderson/ukpostcodes/coverage.svg?branch=master)](https://codecov.io/github/gordonbanderson/ukpostcodes?branch=master)
 
 
