@@ -112,11 +112,11 @@ class API
             // this is an array of arrays, the sub array is keyed query and result
             $response = $decoded['result'];
 
-            foreach($response as $queryResult) {
+            foreach ($response as $queryResult) {
                 $postcodesForQuery = [];
 
                 $postcodeArrays = $queryResult['result'];
-                foreach($postcodeArrays as $postcodeArray) {
+                foreach ($postcodeArrays as $postcodeArray) {
                     $postcode = new PostCode($postcodeArray);
                     $postcodesForQuery[] = $postcode;
                 }

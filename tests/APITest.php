@@ -44,7 +44,6 @@ class APITest extends TestCase
             'KY16 9SS',
             'KY11 3ED'
         ], $postcodes);
-
     }
 
 
@@ -92,7 +91,7 @@ class APITest extends TestCase
         ]);
 
         $coors = [];
-        foreach($postcodeObjects as $postcodeObject) {
+        foreach ($postcodeObjects as $postcodeObject) {
             $entry = [
                 'latitude' => $postcodeObject->latitude,
                 'longitude' => $postcodeObject->longitude,
@@ -106,7 +105,7 @@ class APITest extends TestCase
 
         // check the returned values are all objects of class PostCode
         foreach ($bulkReversed as $postcodeObjArray) {
-            foreach($postcodeObjArray as $postcodeObj) {
+            foreach ($postcodeObjArray as $postcodeObj) {
                 $this->assertEquals('Suilven\UKPostCodes\Models\PostCode', get_class($postcodeObj));
             }
         }
@@ -145,7 +144,6 @@ class APITest extends TestCase
             'KY11 3EA',
             'KY11 3EF',
         ], $postcodes);
-
     }
 
 
@@ -164,7 +162,6 @@ class APITest extends TestCase
             'KY16 9SS',
             'KY11 3ED'
         ]);
-
     }
 
 
@@ -211,7 +208,7 @@ class APITest extends TestCase
      */
     public function testReverseGeocodeInvalidLocation()
     {
-        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0,0);
+        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0, 0);
         $this->assertEquals([], $postcodeObjects);
     }
 
@@ -226,7 +223,7 @@ class APITest extends TestCase
         $this->expectException('Suilven\UKPostCodes\Exceptions\PostCodeServerException');
         $this->expectExceptionMessage('An error occurred whilst trying to lookup postcode for given coordinates');
 
-        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0,0);
+        $postcodeObjects = $this->api->nearestPostcodesFromLongLat(0, 0);
     }
 
 
@@ -280,8 +277,6 @@ class APITest extends TestCase
         $this->assertEquals('AB1 0AA', $terminated->postcode);
         $this->assertEquals(1996, $terminated->year_terminated);
         $this->assertTrue($terminated->terminated);
-
-
     }
 
     /**
@@ -622,6 +617,4 @@ class APITest extends TestCase
         $validated = $this->api->validate('KYAB92A');
         $this->assertFalse($validated);
     }
-
-
 }
