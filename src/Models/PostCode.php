@@ -35,14 +35,13 @@ use _HumbugBox7c6aed0dbb3c\Roave\BetterReflection\Reflection\Adapter\ReflectionO
  * @property string|null $primary_care_trust
  * @property int $quality
  * @property string|null $region
- *
- * Distance is returned by some but not all API endpoints
- * @property float|null $distance
- *
- * For terminated postcodes
  * @property month_terminated int|null
  * @property year_terminated int|null
  * @property terminated bool|null
+ *
+ * Distance is returned by some but not all API endpoints
+ * @property float|null $distance
+
  */
 class PostCode
 {
@@ -55,7 +54,6 @@ class PostCode
         $keys = array_keys($response);
         sort($keys);
         foreach ($keys as $key) {
-            //error_log('* @property int $' . $key);
             $this->$key = $response[$key];
         }
     }
