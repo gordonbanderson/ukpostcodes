@@ -85,7 +85,11 @@ class API
         }
     }
 
-
+    /**
+     * @param array $geolocations an array of arrays keyed with latitude and longitude
+     * @return array<array> An array of arrays of PostCode
+     * @throws PostCodeServerException if a server error occurs
+     */
     public function bulkReverseGeocoding($geolocations)
     {
         $data_string = json_encode(array('geolocations' => $geolocations));
@@ -232,8 +236,8 @@ class API
     /**
      * Lookup a terminated postcode
      *
-     * @param $postcode
-     * @return PostCode
+     * @param string $postcode a terminated postcode
+     * @return PostCode a partially populated postcode object, as most info is missing
      * @throws PostCodeServerException If the postcode in question has been terminated
      */
     public function lookupTerminated($postcode)
@@ -252,6 +256,11 @@ class API
     }
 
 
+    /**
+     * @param string $code An outcode, e.g. DD11
+     * @return OutCode data relevant to the provided outcode
+     * @throws PostCodeServerException if a server error occurs
+     */
     public function lookupOutwardCode($code)
     {
         $jsonurl = "https://api.postcodes.io/outcodes/" . $code;
@@ -267,6 +276,11 @@ class API
     }
 
 
+    /**
+     * @param string $code An outcode, e.g. DD11
+     * @return array<OutCode> An array of nearest outcodes
+     * @throws PostCodeServerException
+     */
     public function nearestOutwardCode($code)
     {
         $jsonurl = "https://api.postcodes.io/outcodes/" . $code . "/nearest";

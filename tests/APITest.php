@@ -167,7 +167,7 @@ class APITest extends TestCase
 
     }
 
-    
+
     /**
      * @test
      * @vcr testlookupservererror.yml

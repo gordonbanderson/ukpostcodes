@@ -35,9 +35,9 @@ use _HumbugBox7c6aed0dbb3c\Roave\BetterReflection\Reflection\Adapter\ReflectionO
  * @property string|null $primary_care_trust
  * @property int $quality
  * @property string|null $region
- * @property month_terminated int|null
- * @property year_terminated int|null
- * @property terminated bool|null
+ * @property int|null $month_terminated
+ * @property int|null $year_terminated
+ * @property bool|null $terminated
  *
  * Distance is returned by some but not all API endpoints
  * @property float|null $distance

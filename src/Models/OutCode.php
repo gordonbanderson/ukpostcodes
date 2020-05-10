@@ -39,10 +39,7 @@ use _HumbugBox7c6aed0dbb3c\Roave\BetterReflection\Reflection\Adapter\ReflectionO
  * Distance is returned by some but not all API endpoints
  * @property float|null $distance
  *
- * For terminated postcodes
- * @property month_terminated int|null
- * @property year_terminated int|null
- * @property terminated bool|null
+
  */
 class OutCode
 {
