@@ -29,6 +29,11 @@ class API
     }
 
 
+    /**
+     * @param string $postcodes postcodes as strings, e.g SW9 YSS
+     * @return array<PostCode>
+     * @throws PostCodeServerException
+     */
     public function bulkLookup($postcodes)
     {
         $data_string = json_encode(array('postcodes' => $postcodes));
@@ -49,8 +54,6 @@ class API
         if ($decoded['status'] == 200) {
             foreach ($decoded['result'] as $singleResponse) {
                 $result = $singleResponse['result'];
-                error_log('RESULT');
-                error_log(print_r($result, 1));
                 $postcode = new PostCode($result);
                 $postcodes[] = $postcode;
             }
@@ -97,11 +100,27 @@ class API
 
         $result = curl_exec($ch);
         curl_close($ch);
-        $decoded = json_decode($result);
-        if ($decoded->status == 200) {
-            return $decoded->result;
+        $decoded = json_decode($result, true);
+
+        $postcodes = [];
+
+        if ($decoded['status'] == 200) {
+            // this is an array of arrays, the sub array is keyed query and result
+            $response = $decoded['result'];
+
+            foreach($response as $queryResult) {
+                $postcodesForQuery = [];
+
+                $postcodeArrays = $queryResult['result'];
+                foreach($postcodeArrays as $postcodeArray) {
+                    $postcode = new PostCode($postcodeArray);
+                    $postcodesForQuery[] = $postcode;
+                }
+                $postcodes[] = $postcodesForQuery;
+            }
+            return $postcodes;
         } else {
-            throw new PostCodeServerException("An error occurred whilst trying to bulk reverse geocode");
+            throw new PostCodeServerException('Bulk reverse geocoding of postcodes failed');
         }
     }
 
@@ -210,6 +229,13 @@ class API
     }
 
 
+    /**
+     * Lookup a terminated postcode
+     *
+     * @param $postcode
+     * @return PostCode
+     * @throws PostCodeServerException If the postcode in question has been terminated
+     */
     public function lookupTerminated($postcode)
     {
         $jsonurl = "https://api.postcodes.io/terminated_postcodes/" . $postcode;
@@ -233,8 +259,6 @@ class API
 
         $decoded = json_decode($json, true);
 
-        error_log(print_r($decoded, 1));
-
         if ($decoded['status'] == 200) {
             return new OutCode($decoded['result']);
         } else {
@@ -250,7 +274,6 @@ class API
 
         $decoded = json_decode($json, true);
 
-        error_log(print_r($decoded, 1));
         if ($decoded['status'] == 200) {
             return $this->parseOutCodeArray($decoded['result']);
         } else {
@@ -268,12 +291,9 @@ class API
         $jsonurl = "https://api.postcodes.io/outcodes?lon=" . $longitude . "&lat=" . $latitude;
         $json = $this->request($jsonurl);
 
-        error_log('T1');
         $decoded = json_decode($json, true);
-        error_log('T2');
 
         if ($decoded['status'] == 200) {
-            error_log('T3');
             return $this->parseOutCodeArray($decoded['result']);
         } else {
             throw new PostCodeServerException("An error occurred whilst trying to autocomplete a postcode");
